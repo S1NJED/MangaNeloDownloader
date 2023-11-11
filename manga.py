@@ -103,10 +103,10 @@ class MangaDownload:
         # https://m.manganelo.com/manga-hj91929
         # https://chapmanganelo.com/manga-hj91929/chapter-1
         
-        url = ""
+        url = self.mangaUrl
         if 'm.' in self.mangaUrl:
             url = self.mangaUrl.replace("m.manganelo", "chapmanganelo") 
-        
+     
         req = requests.get(url + "/chapter-1")
         soup = BeautifulSoup(req.text, 'html.parser')
         url = soup.find('img', class_="reader-content").attrs.get('src')
@@ -167,6 +167,5 @@ class MangaDownload:
 
 
 if __name__ == '__main__':
-    dl = MangaDownload("https://m.manganelo.com/manga-hj91929")
-    dl.getHostUrl()
+    dl = MangaDownload("https://chapmanganelo.com/manga-ad115397")
     print(dl.hostUrl)
