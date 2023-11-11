@@ -6,12 +6,16 @@ from bs4.element import Tag
 from colorama import Fore, Style, Back, init
 from typing import Union
 from time import time, sleep
+from global_vars import *
 
 init(autoreset=True)
 
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0'
-DOWNLOAD_PATH = os.path.join(os.getcwd(), "scans")
-MS = 0.2
+
+if not os.path.isabs(DOWNLOAD_PATH):
+    DOWNLOAD_PATH = os.path.join(os.getcwd(), DOWNLOAD_PATH)
+
+if not os.path.exists(DOWNLOAD_PATH):
+    raise OSError("Your DOWNLOAD_PATH is incorrect. Make sure to enter a valid one")
 
 
 class MangaDownload:
@@ -133,7 +137,7 @@ class MangaDownload:
             imagesUrls = self.getAllChapterImagesUrls(url)       
             imagesUrlLenght = len(imagesUrls)
             
-            print(f"\n========= {self.mangaName}: CHAPTER {Style.BRIGHT}{chapterIndex}{Style.RESET_ALL} / {Back.YELLOW}{Fore.BLACK}{len(self.requestedChapters)}{Style.RESET_ALL} ===================")
+            print(f"\n========= {self.mangaName}: CHAPTER {Style.BRIGHT}{chapterIndex+1}{Style.RESET_ALL} / {Back.YELLOW}{Fore.BLACK}{len(self.requestedChapters)}{Style.RESET_ALL} ===================")
             
             print(f'Starting to download {len(imagesUrls)} images ...\n')
             
