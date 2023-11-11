@@ -173,5 +173,4 @@ class MangaDownload:
 
 
 if __name__ == '__main__':
-    dl = MangaDownload("https://chapmanganelo.com/manga-ad115397")
-    print(dl.hostUrl)
+    print("To start the downloader tool you have to start the main.py file no manga.py ;)")
