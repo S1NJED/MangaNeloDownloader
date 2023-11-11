@@ -60,8 +60,8 @@ class MangaDownload:
         if self.HEADERS.get('Host') is None:
             return print("The 'Host' header is set to `None` make sure to call getHostUrl() method before")
         
-        req = requests.get(imageUrl, headers=self.HEADERS)
-
+        req = requests.get(imageUrl, headers=self.HEADERS, timeout=(5, 30))
+        
         if req.status_code != 200:
             print("Couldn't retrieve image.")
             return False
